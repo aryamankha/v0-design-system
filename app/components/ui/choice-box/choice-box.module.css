@@ -1,0 +1,24 @@
+@reference '../../../chat/[variants]/globals.css';
+
+:global(.dark) .choiceBoxItem:has([data-state='checked']) {
+  @apply bg-blue-950;
+}
+
+.choiceBoxItem:has([data-state='checked']) {
+  @apply border-blue-700 bg-blue-50;
+  /* Need to explicitly target these elements to override their more specific styles */
+  [data-description],
+  [data-title],
+  [data-icon] {
+    @apply text-blue-700 transition-colors;
+  }
+}
+
+.choiceBoxItem:has([data-disabled]):not(:has([data-state='checked'])) {
+  @apply cursor-not-allowed;
+  [data-description],
+  [data-title],
+  [data-icon] {
+    @apply text-gray-400;
+  }
+}

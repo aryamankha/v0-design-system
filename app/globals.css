@@ -1,26 +1,328 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --radius: 0.5rem;
+
+    /* shadcn colors */
+    --background: 0 0% 100%;
+    --foreground: 240 10% 15%;
+    --muted: 0 0% 98%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --ring: 240 5% 64.9%;
+
+    /* v0 DEPRECATED color system */
+    --white: 0 0% 100%;
+    --black: 0 0% 0%;
+    --gray-100: 240 4.76% 95.88%;
+    --gray-200: 240 5.56% 92.94%;
+    --gray-300: 240 4.88% 83.92%;
+    --gray-400: 240 5.03% 64.9%;
+    --gray-500: 240 3.83% 46.08%;
+    --gray-600: 240 5.2% 33.92%;
+    --gray-700: 240 5.26% 26.08%;
+    --gray-800: 240 3.7% 15.88%;
+    --gray-900: 240 5.88% 10%;
+    --gray-1000: 0 0% 0%;
+    --alpha-100: 0, 0%, 0%, 0.03;
+    --alpha-200: 0, 0%, 0%, 0.05;
+    --alpha-300: 0, 0%, 0%, 0.08;
+    --alpha-400: 0, 0%, 0%, 0.1;
+    --teal-100: 167.23 85.45% 89.22%;
+    --teal-700: 175.34 77.44% 26.08%;
+    --blue-300: 213 97% 87%;
+    --blue-900: 224.44 64.29% 32.94%;
+    --red-700: 0 74% 42%;
+    --red-800: 0 65% 51%;
+    --red-1000: 0 93% 94%;
+    --blue-200: 213 97% 87%;
+
+    /* backgrounds */
+    --background-100: 0 0% 100%;
+    --background-200: 0 0% 100%;
+    --background-300: 0 0% 100%;
+
+    /* Universal colors */
+    --universal-white: 0 0% 100%;
+  }
+
+  .light {
+    /* v0 NEW color system - HSL values */
+    --v0-black: hsl(0, 0%, 0%);
+    --v0-white: hsl(0, 0%, 100%);
+    --v0-universal-white: hsl(0, 0%, 100%);
+    --v0-universal-black: hsl(0, 0%, 0%);
+
+    --v0-background-100: hsl(0, 0%, 100%);
+    --v0-background-200: hsl(0, 0%, 98%);
+    --v0-background-300: hsl(0, 0%, 100%);
+
+    --v0-gray-100: hsl(0, 0%, 95%);
+    --v0-gray-200: hsl(0, 0%, 92%);
+    --v0-gray-300: hsl(0, 0%, 90%);
+    --v0-gray-400: hsl(0, 0%, 92%);
+    --v0-gray-500: hsl(0, 0%, 79%);
+    --v0-gray-600: hsl(0, 0%, 66%);
+    --v0-gray-700: hsl(0, 0%, 56%);
+    --v0-gray-800: hsl(0, 0%, 49%);
+    --v0-gray-900: hsl(0, 0%, 40%);
+    --v0-gray-1000: hsl(0, 0%, 9%);
+
+    --v0-alpha-100: hsl(0, 0%, 0% / 0.051);
+    --v0-alpha-200: hsl(0, 0%, 0% / 0.082);
+    --v0-alpha-300: hsl(0, 0%, 0% / 0.102);
+    --v0-alpha-400: hsl(0, 0%, 0% / 0.078);
+    --v0-alpha-500: hsl(0, 0%, 0% / 0.212);
+    --v0-alpha-600: hsl(0, 0%, 0% / 0.341);
+    --v0-alpha-700: hsl(0, 0%, 0% / 0.439);
+    --v0-alpha-800: hsl(0, 0%, 0% / 0.51);
+    --v0-alpha-900: hsl(0, 0%, 0% / 0.604);
+    --v0-alpha-1000: hsl(0, 0%, 0% / 0.91);
+
+    --v0-blue-100: hsl(212, 100%, 97%);
+    --v0-blue-200: hsl(210, 100%, 96%);
+    --v0-blue-300: hsl(210, 100%, 94%);
+    --v0-blue-600: hsl(208, 100%, 66%);
+    --v0-blue-700: hsl(212, 100%, 48%);
+    --v0-blue-900: hsl(211, 100%, 42%);
+
+    --v0-red-100: hsl(0, 100%, 97%);
+    --v0-red-700: hsl(358, 75%, 59%);
+    --v0-red-800: hsl(358, 70%, 52%);
+    --v0-red-900: hsl(358, 66%, 48%);
+
+    --v0-teal-100: hsl(167, 70%, 96%);
+    --v0-teal-700: hsl(173, 80%, 36%);
+    --v0-teal-900: hsl(174, 91%, 25%);
+
+    --v0-green-700: hsl(131, 41%, 46%);
+  }
+
+  .dark {
+    --background: 240 3% 6%;
+    --foreground: 0 0% 98%;
+    --muted: 0 0% 4%;
+    --muted-foreground: 240 5% 64.9%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 85.7% 97.3%;
+    --ring: 240 3.7% 15.9%;
+
+    --gray-100: 240 3.7% 15.88%;
+    --gray-200: 240 5.26% 26.08%;
+    --gray-300: 240 5.2% 33.92%;
+    --gray-400: 240 3.83% 46.08%;
+    --gray-500: 240 5.03% 64.9%;
+    --gray-600: 240 4.88% 83.92%;
+    --gray-700: 240 5.56% 92.94%;
+    --gray-800: 240 4.76% 95.88%;
+    --gray-900: 0 0% 98%;
+    --gray-1000: 0 0% 100%;
+    --alpha-100: 255, 255%, 255%, 0.03;
+    --alpha-200: 255, 255%, 255%, 0.05;
+    --alpha-300: 255, 255%, 255%, 0.08;
+    --alpha-400: 255, 255%, 255%, 0.1;
+
+    --background-100: 240 10% 3.9%;
+    --background-200: 240 3% 6%;
+    --background-300: 240 3% 8%;
+
+    --blue-200: 213 50% 40%;
+    --universal-white: 0 0% 100%;
+
+    /* v0 NEW color system - dark mode HSL values */
+    --v0-white: hsl(0, 0%, 0%);
+    --v0-black: hsl(0, 0%, 100%);
+    --v0-universal-white: hsl(0, 0%, 100%);
+    --v0-universal-black: hsl(0, 0%, 0%);
+
+    --v0-background-100: hsl(0, 0%, 4%);
+    --v0-background-200: hsl(0, 0%, 0%);
+    --v0-background-300: hsl(0, 0%, 7%);
+
+    --v0-gray-100: hsl(0, 0%, 10%);
+    --v0-gray-200: hsl(0, 0%, 12%);
+    --v0-gray-300: hsl(0, 0%, 16%);
+    --v0-gray-400: hsl(0, 0%, 18%);
+    --v0-gray-500: hsl(0, 0%, 27%);
+    --v0-gray-600: hsl(0, 0%, 53%);
+    --v0-gray-700: hsl(0, 0%, 56%);
+    --v0-gray-800: hsl(0, 0%, 49%);
+    --v0-gray-900: hsl(0, 0%, 63%);
+    --v0-gray-1000: hsl(0, 0%, 93%);
+
+    --v0-alpha-100: hsl(0, 0%, 100% / 0.067);
+    --v0-alpha-200: hsl(0, 0%, 100% / 0.086);
+    --v0-alpha-300: hsl(0, 0%, 100% / 0.125);
+    --v0-alpha-400: hsl(0, 0%, 100% / 0.145);
+    --v0-alpha-500: hsl(0, 0%, 100% / 0.239);
+    --v0-alpha-600: hsl(0, 0%, 100% / 0.506);
+    --v0-alpha-700: hsl(0, 0%, 100% / 0.541);
+    --v0-alpha-800: hsl(0, 0%, 100% / 0.471);
+    --v0-alpha-900: hsl(0, 0%, 100% / 0.612);
+    --v0-alpha-1000: hsl(0, 0%, 100% / 0.922);
+
+    --v0-blue-100: hsl(216, 50%, 12%);
+    --v0-blue-200: hsl(214, 59%, 15%);
+    --v0-blue-300: hsl(213, 71%, 20%);
+    --v0-blue-600: hsl(206, 100%, 50%);
+    --v0-blue-700: hsl(212, 100%, 48%);
+    --v0-blue-900: hsl(210, 100%, 66%);
+
+    --v0-red-100: hsl(357, 38%, 12%);
+    --v0-red-700: hsl(358, 75%, 59%);
+    --v0-red-800: hsl(358, 70%, 52%);
+    --v0-red-900: hsl(358, 100%, 69%);
+
+    --v0-teal-100: hsl(169, 78%, 7%);
+    --v0-teal-700: hsl(173, 80%, 36%);
+    --v0-teal-900: hsl(174, 90%, 41%);
+
+    --v0-green-700: hsl(131, 41%, 46%);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@theme inline {
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  /* Shadow system */
+  --shadow-base: 0 0 0 1px hsl(var(--alpha-300));
+  --shadow-xs: 0 0 0 1px hsl(var(--alpha-300)), 0px 2px 1px 0px hsla(0, 0%, 0%, 0.04);
+  --shadow-sm: 0 0 0 1px hsl(var(--alpha-300)), 0px 2px 1px 0px hsla(0, 0%, 0%, 0.04);
+  --shadow-md: 0 0 0 1px hsl(var(--alpha-300)), 0px 8px 8px -8px hsla(0, 0%, 0%, 0.04), 0px 2px 2px 0px hsla(0, 0%, 0%, 0.04);
+  --shadow-lg: 0 0 0 1px hsl(var(--alpha-300)), 0px 8px 16px -4px hsla(0, 0%, 0%, 0.04), 0px 2px 2px 0px hsla(0, 0%, 0%, 0.04);
+  --shadow-modal: 0 0 0 1px hsl(var(--alpha-300)), 0px 24px 32px -8px hsla(0, 0%, 0%, 0.06), 0px 8px 16px -4px hsla(0, 0%, 0%, 0.04);
+  --shadow-tooltip: 0 0 0 1px hsl(var(--alpha-300)), 0px 4px 8px 0px hsla(0, 0%, 0%, 0.04), 0px 1px 1px 0px hsla(0, 0%, 0%, 0.02);
+
+  /* NEW v0 color system mapped to Tailwind */
+  --color-v0-black: var(--v0-black);
+  --color-v0-white: var(--v0-white);
+  --color-v0-universal-white: var(--v0-universal-white);
+  --color-v0-universal-black: var(--v0-universal-black);
+
+  --color-v0-background-100: var(--v0-background-100);
+  --color-v0-background-200: var(--v0-background-200);
+  --color-v0-background-300: var(--v0-background-300);
+
+  --color-v0-gray-100: var(--v0-gray-100);
+  --color-v0-gray-200: var(--v0-gray-200);
+  --color-v0-gray-300: var(--v0-gray-300);
+  --color-v0-gray-400: var(--v0-gray-400);
+  --color-v0-gray-500: var(--v0-gray-500);
+  --color-v0-gray-600: var(--v0-gray-600);
+  --color-v0-gray-700: var(--v0-gray-700);
+  --color-v0-gray-800: var(--v0-gray-800);
+  --color-v0-gray-900: var(--v0-gray-900);
+  --color-v0-gray-1000: var(--v0-gray-1000);
+
+  --color-v0-alpha-100: var(--v0-alpha-100);
+  --color-v0-alpha-200: var(--v0-alpha-200);
+  --color-v0-alpha-300: var(--v0-alpha-300);
+  --color-v0-alpha-400: var(--v0-alpha-400);
+  --color-v0-alpha-500: var(--v0-alpha-500);
+  --color-v0-alpha-600: var(--v0-alpha-600);
+  --color-v0-alpha-700: var(--v0-alpha-700);
+  --color-v0-alpha-800: var(--v0-alpha-800);
+  --color-v0-alpha-900: var(--v0-alpha-900);
+  --color-v0-alpha-1000: var(--v0-alpha-1000);
+
+  --color-v0-blue-100: var(--v0-blue-100);
+  --color-v0-blue-200: var(--v0-blue-200);
+  --color-v0-blue-300: var(--v0-blue-300);
+  --color-v0-blue-600: var(--v0-blue-600);
+  --color-v0-blue-700: var(--v0-blue-700);
+  --color-v0-blue-900: var(--v0-blue-900);
+
+  --color-v0-red-100: var(--v0-red-100);
+  --color-v0-red-700: var(--v0-red-700);
+  --color-v0-red-800: var(--v0-red-800);
+  --color-v0-red-900: var(--v0-red-900);
+
+  --color-v0-teal-100: var(--v0-teal-100);
+  --color-v0-teal-700: var(--v0-teal-700);
+  --color-v0-teal-900: var(--v0-teal-900);
+
+  --color-v0-green-700: var(--v0-green-700);
+
+  /* DEPRECATED v0 colors (for backward compatibility) */
+  --color-gray-100: hsl(var(--gray-100));
+  --color-gray-300: hsl(var(--gray-300));
+  --color-gray-400: hsl(var(--gray-400));
+  --color-gray-1000: hsl(var(--gray-1000));
+  --color-teal-100: hsl(var(--teal-100));
+  --color-teal-700: hsl(var(--teal-700));
+  --color-background-100: hsl(var(--background-100));
+  --color-background-200: hsl(var(--background-200));
+}
+
+@layer base {
+  *, ::after, ::before, ::backdrop, ::file-selector-button {
+    border-color: var(--color-v0-gray-400, currentcolor);
+  }
+
+  *::selection {
+    background: var(--color-v0-teal-100);
+    color: var(--color-v0-teal-900);
+  }
+
+  body {
+    background: var(--color-v0-background-200);
+    color: hsl(var(--foreground));
+    font-family: var(--font-sans);
+  }
+
+  button:not(:disabled), [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+@utility grid-stack {
+  grid-row: 1;
+  grid-column: 1;
+}
+
+/* Typography utilities from v0 */
+@utility text-heading-24 {
+  @apply font-sans text-[24px] font-semibold leading-[32px] tracking-[-0.96px];
+}
+
+@utility text-heading-20 {
+  @apply font-sans text-[20px] font-semibold leading-[26px] tracking-[-0.4px];
+}
+
+@utility text-label-16 {
+  @apply font-sans text-[16px] font-normal leading-[20px];
+}
+
+@utility text-label-14 {
+  @apply font-sans text-[14px] font-normal leading-[20px];
 }
